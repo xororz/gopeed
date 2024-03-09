@@ -6,11 +6,12 @@ package main
 import (
 	"embed"
 	"fmt"
-	"github.com/GopeedLab/gopeed/cmd"
-	"github.com/GopeedLab/gopeed/pkg/rest/model"
 	"io/fs"
 	"os"
 	"path/filepath"
+
+	"github.com/GopeedLab/gopeed/cmd"
+	"github.com/GopeedLab/gopeed/pkg/rest/model"
 )
 
 //go:embed dist/*
@@ -31,11 +32,10 @@ func main() {
 		}
 	}
 
-	exe, err := os.Executable()
+	dir, err := os.Getwd()
 	if err != nil {
 		panic(err)
 	}
-	dir := filepath.Dir(exe)
 
 	cfg := &model.StartConfig{
 		Network:        "tcp",
